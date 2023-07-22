@@ -10,11 +10,11 @@ def write_expense_to_spreadsheet(Product_Codes, Price, Client, Client_Code, Orde
              'https://www.googleapis.com/auth/drive']
     creds = ServiceAccountCredentials.from_json_keyfile_name('filename', scope)
     gspread_client = GSpreadClient(creds)
-    spreadsheet_id = "1AUhV89IlTFXr6nkrD3gFFFz_6JBOSDHeICxxwpe-O9E"
+    spreadsheet_id = ""
     sheet = gspread_client.open_by_key(spreadsheet_id).sheet1
     sheet.append_row([Product_Codes, Price, Client, Client_Code, Orders, Total])
 
-WEBHOOK_URL = "https://hooks.slack.com/services/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"
+WEBHOOK_URL = ""
 def post_message_to_slack_via_webhook(message):
     payload = {'text': message}
 
@@ -36,7 +36,7 @@ def run_conversation():
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-0613",
             messages=[
-                {"role": "system", "content": "You are best assistant ever!"},
+                {"role": "system", "content": "You are the best assistant ever!"},
                 {"role": "user", "content": user_input}],
             functions=[
                 {
